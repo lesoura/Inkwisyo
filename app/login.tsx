@@ -8,7 +8,7 @@ export default function LoginPage() {
   const screenWidth = Dimensions.get('window').width;
 
   const handleLogin = () => router.replace('/(tabs)');
-  const handleCreateAccount = () => router.push('/(tabs)');
+  const handleCreateAccount = () => router.push('/registration');
 
   return (
     <View style={{ flex: 1, alignItems: 'center', padding: 20, backgroundColor: '#121212' }}>
@@ -16,12 +16,12 @@ export default function LoginPage() {
       <Image
         source={require('../assets/images/login-pic.png')}
         style={{
-          marginTop: 40,
+          marginTop: 60,
           width: screenWidth * 0.75,
           height: screenWidth * 0.75,
           aspectRatio: 1,
-          borderRadius: 20,
-          marginBottom: 20,
+          borderRadius: 30,
+          marginBottom: 30,
         }}
         resizeMode="cover"
       />
