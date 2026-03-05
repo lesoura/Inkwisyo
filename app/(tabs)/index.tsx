@@ -1,98 +1,134 @@
-import { Image } from 'expo-image';
-import { Platform, StyleSheet } from 'react-native';
-
-import { HelloWave } from '@/components/hello-wave';
-import ParallaxScrollView from '@/components/parallax-scroll-view';
-import { ThemedText } from '@/components/themed-text';
-import { ThemedView } from '@/components/themed-view';
-import { Link } from 'expo-router';
+import { tattoos } from '@/data/tattoos';
+import { useRouter } from 'expo-router';
+import { useState } from 'react';
+import { Image, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 
 export default function HomeScreen() {
-  return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12',
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <Link href="/modal">
-          <Link.Trigger>
-            <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-          </Link.Trigger>
-          <Link.Preview />
-          <Link.Menu>
-            <Link.MenuAction title="Action" icon="cube" onPress={() => alert('Action pressed')} />
-            <Link.MenuAction
-              title="Share"
-              icon="square.and.arrow.up"
-              onPress={() => alert('Share pressed')}
-            />
-            <Link.Menu title="More" icon="ellipsis">
-              <Link.MenuAction
-                title="Delete"
-                icon="trash"
-                destructive
-                onPress={() => alert('Delete pressed')}
-              />
-            </Link.Menu>
-          </Link.Menu>
-        </Link>
+  const router = useRouter();
+  const [category, setCategory] = useState('All');
 
-        <ThemedText>
-          {`Tap the Explore tab to learn more about what's included in this starter app.`}
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          {`When you're ready, run `}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+  const categories = ['All', 'Animals', 'Directional & Journey'];
+
+  // Filtered tattoos based on category
+  const filtered =
+    category === 'All'
+      ? tattoos
+      : category === 'Directional & Journey'
+      ? tattoos.filter(
+          (item) => item.category === 'Directional' || item.category === 'Journey'
+        )
+      : tattoos.filter((item) => item.category === category);
+
+  // Split into two columns for masonry
+  const leftColumn: typeof tattoos = [];
+  const rightColumn: typeof tattoos = [];
+  let leftHeight = 0;
+  let rightHeight = 0;
+
+  filtered.forEach((item) => {
+    if (leftHeight <= rightHeight) {
+      leftColumn.push(item);
+      leftHeight += item.height;
+    } else {
+      rightColumn.push(item);
+      rightHeight += item.height;
+    }
+  });
+
+  // Function to navigate to details page
+  const openDetails = (id: number) => {
+    router.push(`/tattoo-details?id=${id}`);
+  };
+
+  return (
+    <View style={{ flex: 1, backgroundColor: '#000', paddingTop: 60 }}>
+      {/* App Icon */}
+      <Image
+        source={require('@/assets/images/Inkwisyo.png')}
+        resizeMode="contain"
+        style={{
+          width: '90%',
+          height: 45,
+          alignSelf: 'center',
+          marginBottom: 40,
+          marginTop: 20,
+        }}
+      />
+
+      {/* Categories */}
+      <View
+        style={{
+          flexDirection: 'row',
+          justifyContent: 'space-around',
+          marginBottom: 20,
+          paddingHorizontal: 20,
+        }}
+      >
+        {categories.map((item) => {
+          const isActive = category === item;
+          return (
+            <TouchableOpacity
+              key={item}
+              onPress={() => setCategory(item)}
+              style={{
+                backgroundColor: isActive ? '#000' : '#313131',
+                paddingVertical: 8,
+                paddingHorizontal: 16,
+                borderRadius: 10,
+              }}
+            >
+              <Text
+                style={{
+                  color: '#fff',
+                  fontSize: 14,
+                  fontWeight: '600',
+                }}
+              >
+                {item}
+              </Text>
+            </TouchableOpacity>
+          );
+        })}
+      </View>
+
+      {/* Image Gallery */}
+      <ScrollView contentContainerStyle={{ paddingHorizontal: 20 }}>
+        <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+          {/* Left Column */}
+          <View style={{ flex: 1, marginRight: 10 }}>
+            {leftColumn.map((item) => (
+              <TouchableOpacity key={item.id} onPress={() => openDetails(item.id)}>
+                <Image
+                  source={item.image}
+                  style={{
+                    width: '100%',
+                    height: item.height,
+                    borderRadius: 10,
+                    marginBottom: 10,
+                  }}
+                />
+              </TouchableOpacity>
+            ))}
+          </View>
+
+          {/* Right Column */}
+          <View style={{ flex: 1, marginLeft: 10 }}>
+            {rightColumn.map((item) => (
+              <TouchableOpacity key={item.id} onPress={() => openDetails(item.id)}>
+                <Image
+                  source={item.image}
+                  style={{
+                    width: '100%',
+                    height: item.height,
+                    borderRadius: 10,
+                    marginBottom: 10,
+                  }}
+                />
+              </TouchableOpacity>
+            ))}
+          </View>
+        </View>
+      </ScrollView>
+    </View>
   );
 }
-
-const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
-  },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
-  },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
-  },
-});
