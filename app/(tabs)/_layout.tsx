@@ -1,14 +1,23 @@
 // app/(tabs)/_layout.tsx
 import { Ionicons } from '@expo/vector-icons';
-import { Tabs, usePathname, useRouter } from 'expo-router';
-import React from 'react';
+import { Tabs, useRouter } from 'expo-router';
+import React, { useState } from 'react';
 import { TouchableOpacity, View } from 'react-native';
 
 export default function TabLayout() {
   const router = useRouter();
-  const pathname = usePathname();
+  const [activeTab, setActiveTab] = useState<'home' | 'explore' | 'settings'>('home');
 
-  const isActive = (path: string) => pathname === path;
+  const paths = {
+  home: '/(tabs)',
+  explore: '/(tabs)/explore',
+  settings: '/(tabs)/settings',
+} as const;
+
+const handlePress = (tab: keyof typeof paths) => {
+  setActiveTab(tab);
+  router.push(paths[tab]);
+};
 
   return (
     <View style={{ flex: 1 }}>
@@ -38,23 +47,27 @@ export default function TabLayout() {
           elevation: 10,
         }}
       >
-        <TouchableOpacity onPress={() => router.push('/(tabs)')}>
-          <Ionicons name="home-outline" size={28} color={isActive('/(tabs)') ? '#fff' : '#626262'} />
-        </TouchableOpacity>
-
-        <TouchableOpacity onPress={() => router.push('/(tabs)/explore')}>
+        <TouchableOpacity onPress={() => handlePress('home')}>
           <Ionicons
-            name="compass-outline"
+            name="home-outline"
             size={28}
-            color={isActive('/(tabs)/explore') ? '#fff' : '#626262'}
+            color={activeTab === 'home' ? '#fff' : '#626262'}
           />
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => router.push('/(tabs)/settings')}>
+        <TouchableOpacity onPress={() => handlePress('explore')}>
+          <Ionicons
+            name="compass-outline"
+            size={28}
+            color={activeTab === 'explore' ? '#fff' : '#626262'}
+          />
+        </TouchableOpacity>
+
+        <TouchableOpacity onPress={() => handlePress('settings')}>
           <Ionicons
             name="settings-outline"
             size={28}
-            color={isActive('/(tabs)/settings') ? '#fff' : '#626262'}
+            color={activeTab === 'settings' ? '#fff' : '#626262'}
           />
         </TouchableOpacity>
       </View>
