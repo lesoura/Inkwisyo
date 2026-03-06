@@ -11,7 +11,7 @@ export const modernTattoos = [
     id: 2,
     category: "Modern",
     image: require('@/assets/images/Fine Line.png'),
-    image2: require('@/assets/images/Fine-Line.png'),
+    image2: require('@/assets/images/Fine-Line2.png'),
     title: "Fine Line",
     description: "Fine line and minimalist tattoos in the Philippines represent a contemporary and refined approach to body art, distinguished by the use of thin, precise, and clean lines. These designs are typically executed using single-needle (1RL) or small needle configurations, allowing for intricate yet subtle detailing. In recent years, this style has gained significant popularity, particularly among younger individuals, due to its aesthetic subtlety, relatively lower discomfort during application, and its capacity to communicate meaningful personal narratives through simple, understated, and predominantly monochromatic (black and grey) compositions."
   },
