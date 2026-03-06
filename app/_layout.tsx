@@ -2,8 +2,8 @@ import { useFonts } from 'expo-font';
 import * as NavigationBar from 'expo-navigation-bar';
 import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
-import React, { useEffect } from 'react';
-import { View } from 'react-native';
+import React, { useEffect, useRef, useState } from 'react';
+import { Animated, Image, View } from 'react-native';
 import 'react-native-reanimated';
 
 export default function RootLayout() {
@@ -11,12 +11,45 @@ export default function RootLayout() {
     'Denver-Serial-Bold': require('../assets/images/denver-serial-bold.ttf'),
   });
 
+  const [showSplash, setShowSplash] = useState(true);
+  const fadeAnim = useRef(new Animated.Value(1)).current;
+
   useEffect(() => {
     NavigationBar.setBackgroundColorAsync('#000');
     NavigationBar.setButtonStyleAsync('light');
+
+    const timer = setTimeout(() => {
+      Animated.timing(fadeAnim, {
+        toValue: 0,
+        duration: 800, // fade duration
+        useNativeDriver: true,
+      }).start(() => setShowSplash(false));
+    }, 4000); // splash duration
+
+    return () => clearTimeout(timer);
   }, []);
 
-  if (!fontsLoaded) return null; // wait until font is loaded
+  if (!fontsLoaded) return null;
+
+  if (showSplash) {
+    return (
+      <Animated.View
+        style={{
+          flex: 1,
+          backgroundColor: '#000',
+          justifyContent: 'center',
+          alignItems: 'center',
+          opacity: fadeAnim,
+        }}
+      >
+        <Image
+          source={require('../assets/images/Inkwisyo-splash2.gif')}
+          style={{ height: '100%' }}
+          resizeMode="contain"
+        />
+      </Animated.View>
+    );
+  }
 
   return (
     <View style={{ flex: 1, backgroundColor: '#121212' }}>
