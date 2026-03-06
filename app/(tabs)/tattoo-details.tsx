@@ -83,7 +83,7 @@ export default function TattooDetailsPage() {
         </View>
 
       {/* Back Button */}
-      <TouchableOpacity
+      {/* <TouchableOpacity
         onPress={() => router.back()}
         style={{
           width: '90%',
@@ -96,7 +96,7 @@ export default function TattooDetailsPage() {
         }}
       >
         <Text style={{ color: '#E1FF00', fontSize: 16, textAlign: 'center' }}>Back</Text>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
     </View>
   );
 }
