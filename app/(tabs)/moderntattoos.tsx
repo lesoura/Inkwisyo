@@ -19,7 +19,16 @@ export default function ModernTattoo() {
       />
       
       {/* Label above line */}
-      <Text style={styles.label}>Modern Tattoo Styles</Text>
+      <Text
+        style={{
+            fontFamily: 'Denver-Serial-Bold',
+            fontSize: 32,
+            color: '#E1FF00', // optional, keep your color
+            marginBottom: 10,
+        }}
+        >
+        Modern Tattoo Styles
+      </Text>
 
       <View style={styles.line} />
 
@@ -50,14 +59,6 @@ const styles = StyleSheet.create({
     paddingTop: 40,
     paddingHorizontal: 20,
   },
-
-  label: {
-    color: '#E1FF00',
-    fontSize: 30,
-    fontWeight: '700',
-    marginBottom: 5,
-    alignSelf: 'center',
-},
 
   logo: {
     width: '90%',

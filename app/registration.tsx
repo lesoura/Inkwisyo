@@ -72,7 +72,7 @@ export default function RegistrationPage() {
                     marginBottom: 5,
                 }}
                 >
-                <Text style={{ color: '#fff', fontWeight: 'bold', fontSize: 28 }}>{index + 1}</Text>
+                <Text style={{ color: '#fff', fontSize: 32, fontFamily: 'Denver-Serial-Bold' }}>{index + 1}</Text>
                 </View>
                 <Text style={{ color: '#fff', fontSize: 12 }}>{label}</Text>
             </View>
@@ -83,7 +83,7 @@ export default function RegistrationPage() {
         {/* Step Inputs */}
         {step === 1 && (
           <View style={{ width: screenWidth - 40, marginBottom: 15 }}>
-            <Text style={{ color: '#fff', marginBottom: 10, fontSize: 28, fontWeight: 'bold' }}>Your Name</Text>
+            <Text style={{ color: '#fff', marginBottom: 10, fontSize: 32, fontFamily: 'Denver-Serial-Bold' }}>Your Name</Text>
             <TextInput
               placeholder="Name"
               placeholderTextColor="#FFFFFF"
@@ -118,7 +118,7 @@ export default function RegistrationPage() {
 
         {step === 2 && (
           <View style={{ width: screenWidth - 40, marginBottom: 15 }}>
-            <Text style={{ color: '#fff', marginBottom: 10, fontSize: 28, fontWeight: 'bold' }}>Email</Text>
+            <Text style={{ color: '#fff', marginBottom: 10, fontSize: 32, fontFamily: 'Denver-Serial-Bold' }}>Email</Text>
             <TextInput
               placeholder="Email"
               placeholderTextColor="#FFFFFF"
@@ -155,7 +155,7 @@ export default function RegistrationPage() {
 
         {step === 3 && (
           <View style={{ width: screenWidth - 40, marginBottom: 15 }}>
-            <Text style={{ color: '#fff', marginBottom: 10, fontSize: 28, fontWeight: 'bold' }}>Password</Text>
+            <Text style={{ color: '#fff', marginBottom: 10, fontSize: 32, fontFamily: 'Denver-Serial-Bold' }}>Password</Text>
             <TextInput
               placeholder="Password"
               placeholderTextColor="#FFFFFF"

@@ -1,5 +1,5 @@
 import { tattoos } from '@/data/tattoos';
-import { FontAwesome } from '@expo/vector-icons'; // make sure expo/vector-icons is installed
+import { FontAwesome } from '@expo/vector-icons';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { Dimensions, Image, Linking, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 
@@ -21,8 +21,9 @@ export default function TattooDetailsPage() {
   }
 
   return (
-    <View style={{ flex: 1, backgroundColor: '#000', padding: 10 }}>
-      {/* App Icon */}
+    <View style={{ flex: 1, backgroundColor: '#000', paddingHorizontal: 10, paddingTop: 40 }}>
+      
+      {/* FIXED HEADER */}
       <Image
         source={require('@/assets/images/Inkwisyo.png')}
         resizeMode="contain"
@@ -31,72 +32,66 @@ export default function TattooDetailsPage() {
           height: 45,
           alignSelf: 'center',
           marginBottom: 20,
-          marginTop: 60,
+          marginTop: 30,
         }}
       />
 
-      {/* Tattoo Image */}
-      <Image
-        source={tattoo.image}
-        style={{
-          width: '100%',
-          height: screenWidth, // 1:1
-          borderRadius: 15,
-          marginBottom: 20,
-        }}
-        resizeMode="cover"
-      />
+      {/* SCROLL AREA */}
+      <View style={{ flex: 0.88 }}>
+        <ScrollView contentContainerStyle={{ paddingBottom: 20 }}>
 
-      {/* Title row with chain/link icon */}
-        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between'}}>
-            <Text style={{ color: '#E1FF00', fontSize: 30, fontWeight: '700' }}>
-                {tattoo.title}
-            </Text>
-            <TouchableOpacity
-                onPress={() => Linking.openURL('https://lakbaypinas.com/buscalan-kalinga-village-tattoo-apo-whang-od/')}
+          {/* Tattoo Image */}
+          <Image
+            source={tattoo.image}
+            style={{
+              width: '100%',
+              height: screenWidth,
+              borderRadius: 15,
+              marginBottom: 20,
+            }}
+            resizeMode="cover"
+          />
+
+          {/* Title + Link */}
+          <View style={{ flexDirection: 'row', alignItems: 'flex-start', marginBottom: 10 }}>
+            <Text
+              style={{
+                fontFamily: 'Denver-Serial-Bold',
+                color: '#E1FF00',
+                fontSize: 32,
+                flex: 1,
+              }}
             >
-                <FontAwesome name="link" size={24} color="#fff" />
-            </TouchableOpacity>
-        </View>
-      <Text style={{ color: '#ffffffda', fontSize: 14, fontWeight: '600', marginBottom: 10 }}>
-        {tattoo.meaning}
-      </Text>
-
-      {/* Horizontal line */}
-      <View style={{ height: 1, backgroundColor: '#fff', marginVertical: 10, opacity: 0.3 }} />
-
-      {/* Description with fixed height, scrollable, and gray background */}
-        <View
-        style={{
-            height: 140,
-            marginBottom: 20,
-            backgroundColor: '#333', // gray background
-            borderRadius: 10,
-            padding: 10,
-        }}
-        >
-        <ScrollView showsVerticalScrollIndicator={true} nestedScrollEnabled={true}>
-            <Text style={{ color: '#fff', fontSize: 14, lineHeight: 22, textAlign: 'justify' }}>
-            {tattoo.description}
+              {tattoo.title}
             </Text>
-        </ScrollView>
-        </View>
 
-      {/* Back Button */}
-      {/* <TouchableOpacity
-        onPress={() => router.back()}
-        style={{
-          width: '90%',
-          alignSelf: 'center',
-          paddingVertical: 12,
-          borderWidth: 1,
-          borderColor: '#fff',
-          borderRadius: 25,
-          marginBottom: 30,
-        }}
-      >
-        <Text style={{ color: '#E1FF00', fontSize: 16, textAlign: 'center' }}>Back</Text>
-      </TouchableOpacity> */}
+            <TouchableOpacity
+              onPress={() =>
+                Linking.openURL(
+                  'https://lakbaypinas.com/buscalan-kalinga-village-tattoo-apo-whang-od/'
+                )
+              }
+              style={{ marginLeft: 10, marginTop: 10 }}
+            >
+              <FontAwesome name="link" size={24} color="#fff" />
+            </TouchableOpacity>
+          </View>
+
+          {/* Meaning */}
+          <Text style={{ color: '#ffffffda', fontSize: 14, fontWeight: '600', marginBottom: 5 }}>
+            {tattoo.meaning}
+          </Text>
+
+          {/* Divider */}
+          <View style={{ height: 1, backgroundColor: '#fff', marginVertical: 10, opacity: 0.3 }} />
+
+          {/* Description */}
+          <Text style={{ color: '#fff', fontSize: 14, lineHeight: 22, textAlign: 'justify', marginBottom: 30 }}>
+            {tattoo.description}
+          </Text>
+
+        </ScrollView>
+      </View>
     </View>
   );
 }

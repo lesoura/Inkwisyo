@@ -2,7 +2,7 @@ import { FontAwesome } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
-export default function ACTips() {
+export default function TATips() {
   const router = useRouter();
 
   const tips = [
@@ -27,51 +27,47 @@ export default function ACTips() {
   ];
 
   return (
-    <View style={styles.container}>
-      {/* Logo */}
-      <Image
-        source={require('@/assets/images/Inkwisyo.png')}
-        resizeMode="contain"
-        style={styles.logo}
-      />
+    <View style={{ flex: 1, backgroundColor: '#000' }}>
+      <View style={styles.innerContainer}>
+        {/* Logo */}
+        <Image
+          source={require('@/assets/images/Inkwisyo.png')}
+          resizeMode="contain"
+          style={styles.logo}
+        />
 
-      {/* Label above line */}
-      <Text style={styles.label}>Tattoo Artist Tips</Text>
+        {/* Page label */}
+        <Text style={styles.pageLabel}>Tattoo Artist Tips</Text>
 
-      <View style={styles.line} />
+        <View style={styles.line} />
 
-      <ScrollView style={styles.scroll}>
-        {tips.map((tip) => (
-          <View key={tip.id} style={styles.tipContainer}>
-            <View style={styles.tipHeader}>
-                <Text style={styles.tipTitle}>{tip.id}. {tip.title}</Text>
+        <ScrollView style={styles.scroll} contentContainerStyle={{ paddingBottom: 20 }}>
+          {tips.map((tip) => (
+            <View key={tip.id} style={styles.tipContainer}>
+              <View style={styles.tipHeader}>
+                <Text style={styles.tipTitle}>
+                  {tip.id}. {tip.title}
+                </Text>
                 <TouchableOpacity style={styles.iconContainer} onPress={() => {}}>
-                    <FontAwesome name="link" size={20} color="#fff" />
+                  <FontAwesome name="link" size={20} color="#fff" />
                 </TouchableOpacity>
-                </View>
-            <Text style={styles.tipDescription}>{tip.description}</Text>
-          </View>
-        ))}
-      </ScrollView>
+              </View>
+              <Text style={styles.tipDescription}>{tip.description}</Text>
+            </View>
+          ))}
+        </ScrollView>
+      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
+  innerContainer: {
+    height: '90%', // leaves space for navbar
     backgroundColor: '#000',
     alignItems: 'center',
     paddingTop: 40,
     paddingHorizontal: 20,
-  },
-
-  label: {
-    color: '#E1FF00',
-    fontSize: 30,
-    fontWeight: '700',
-    marginBottom: 5,
-    alignSelf: 'center',
   },
 
   logo: {
@@ -80,6 +76,14 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     marginBottom: 10,
     marginTop: 30,
+  },
+
+  pageLabel: {
+    color: '#E1FF00',
+    fontSize: 32,
+    marginBottom: 10,
+    alignSelf: 'center',
+    fontFamily: 'Denver-Serial-Bold',
   },
 
   line: {
@@ -102,19 +106,20 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     marginBottom: 5,
-    },
+  },
 
-    tipTitle: {
+  tipTitle: {
     color: '#E1FF00',
-    fontSize: 28,
-    fontWeight: '700',
+    fontSize: 30,
     width: '90%',
-    },
+    fontFamily: 'Denver-Serial-Bold',
+  },
 
-    iconContainer: {
-    width: '10%',       // icon takes 10%
-    alignItems: 'flex-end',  // align icon to right
-    },
+  iconContainer: {
+    width: '10%',
+    alignItems: 'flex-end',
+    marginTop: -40,
+  },
 
   tipDescription: {
     color: '#fff',

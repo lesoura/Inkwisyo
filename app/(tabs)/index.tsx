@@ -71,7 +71,7 @@ export default function HomeScreen() {
               key={item}
               onPress={() => setCategory(item)}
               style={{
-                backgroundColor: isActive ? '#000' : '#313131',
+                backgroundColor: isActive ? '#fff' : '#313131',
                 paddingVertical: 8,
                 paddingHorizontal: 16,
                 borderRadius: 10,
@@ -79,7 +79,7 @@ export default function HomeScreen() {
             >
               <Text
                 style={{
-                  color: '#fff',
+                  color: isActive ? '#000' : '#fff',
                   fontSize: 14,
                   fontWeight: '600',
                 }}

@@ -15,7 +15,7 @@ export default function SettingsPage() {
   return (
     <View style={styles.container}>
       {/* Top label */}
-      <Text style={styles.header}>Settings</Text>
+      <Text style={{ fontFamily: 'Denver-Serial-Bold', fontSize: 32, color: '#fff', marginBottom: 10, }}>Settings</Text>
       <View style={styles.line} />
 
       {/* Options list */}
@@ -58,12 +58,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingTop: 60,
     paddingHorizontal: 20,
-  },
-  header: {
-    fontSize: 32,
-    color: '#fff',
-    fontWeight: '700',
-    marginBottom: 10,
   },
   line: {
     height: 5,

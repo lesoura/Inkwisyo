@@ -6,32 +6,32 @@ export default function TattooHistoryAndCulture() {
 
   return (
     <View style={styles.container}>
+      {/* Header (NOT scrollable) */}
+      <Image
+        source={require('@/assets/images/Inkwisyo.png')}
+        resizeMode="contain"
+        style={styles.logo}
+      />
+
+      <Text style={styles.headerTitle}>
+        Tattoo History & Culture
+      </Text>
+
+      <View style={styles.line} />
+
+      {/* 90% height scroll section */}
       <View style={styles.scrollWrapper}>
         <ScrollView contentContainerStyle={styles.scrollContent}>
-          {/* Logo */}
-          <Image
-            source={require('@/assets/images/Inkwisyo.png')}
-            resizeMode="contain"
-            style={styles.logo}
-          />
-
-          {/* Label */}
-          <Text style={styles.label}>Tattoo History & Culture</Text>
-
-          {/* Horizontal line */}
-          <View style={styles.line} />
-
-          {/* Top image */}
           <Image
             source={require('@/assets/images/TC.png')}
             style={styles.topImage}
             resizeMode="contain"
           />
 
-          {/* Title */}
-          <Text style={styles.title}>Where is Buscalan?</Text>
+          <Text style={styles.sectionTitle}>
+            Where is Buscalan?
+          </Text>
 
-          {/* Description */}
           <Text style={styles.description}>
             Located in the northern part of the Philippines, Buscalan Village is situated in the province of Kalinga. This remote village is perched on a mountain ridge, surrounded by lush rice terraces and dramatic landscapes that seem to be pulled straight out of a postcard. Getting to Buscalan requires determination, as the journey involves a combination of long drives and challenging hikes, but the rewards are more than worth it.
 
@@ -40,7 +40,6 @@ export default function TattooHistoryAndCulture() {
             Buscalan is part of the Tinglayan municipality in Kalinga. The village is accessible by foot, with the nearest road being several kilometers away. This isolation has helped preserve its cultural practices, particularly its traditional tattooing methods. Visitors to Buscalan are often struck by the village’s tranquility, the beauty of its surroundings, and the warmth of its people.
           </Text>
 
-          {/* Bottom image */}
           <Image
             source={require('@/assets/images/TC2.png')}
             style={styles.bottomImage}
@@ -61,13 +60,13 @@ const styles = StyleSheet.create({
   },
 
   scrollWrapper: {
-    flex: 0.9,            // 90% of screen height, leaving room for navbar
+    flex: 0.85, // keeps scroll section at ~90% height
   },
 
   scrollContent: {
     alignItems: 'center',
-    flexGrow: 1,          // allows scrolling
-    paddingBottom: 20,    // bottom spacing
+    flexGrow: 1,
+    paddingBottom: 20,
   },
 
   logo: {
@@ -78,12 +77,12 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
 
-  label: {
+  headerTitle: {
+    fontFamily: 'Denver-Serial-Bold',
+    fontSize: 32,
     color: '#E1FF00',
-    fontSize: 30,
-    fontWeight: '700',
-    marginBottom: 5,
-    alignSelf: 'center',
+    marginBottom: 10,
+    textAlign: 'center',
   },
 
   line: {
@@ -91,22 +90,21 @@ const styles = StyleSheet.create({
     width: '100%',
     backgroundColor: '#fff',
     opacity: 0.3,
-    marginBottom: -15,
   },
 
   topImage: {
     width: '100%',
     height: 300,
     borderRadius: 15,
-    marginBottom: -10,
+    marginBottom: -15,
   },
 
-  title: {
+  sectionTitle: {
+    fontFamily: 'Denver-Serial-Bold',
+    fontSize: 32,
     color: '#E1FF00',
-    fontSize: 28,
-    fontWeight: '700',
-    alignSelf: 'flex-start',
     marginBottom: 10,
+    alignSelf: 'flex-start',
   },
 
   description: {

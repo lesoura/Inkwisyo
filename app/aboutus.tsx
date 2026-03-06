@@ -7,7 +7,7 @@ export default function AboutUsPage() {
   return (
     <View style={styles.container}>
       {/* Top label */}
-      <Text style={styles.header}>About Us</Text>
+      <Text style={{ fontFamily: 'Denver-Serial-Bold', fontSize: 32, color: '#fff', marginBottom: 10, }}>About Us</Text>
       <View style={styles.line} />
 
       {/* Description */}

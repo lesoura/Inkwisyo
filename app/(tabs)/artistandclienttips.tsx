@@ -1,14 +1,15 @@
 import { useRouter } from 'expo-router';
-import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Dimensions, Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 export default function ArtistAndClientTips() {
   const router = useRouter();
+  const screenHeight = Dimensions.get('window').height;
 
   const openDetails = (id: number) => {
     if (id === 1) {
-      router.push('/ACTips'); // Navigate to ACTips.tsx
+      router.push('/ACTips');
     } else if (id === 2) {
-      router.push('/TATips'); // Navigate to TATips.tsx
+      router.push('/TATips');
     }
   };
 
@@ -25,10 +26,19 @@ export default function ArtistAndClientTips() {
         style={styles.logo}
       />
 
-      <Text style={styles.label}>Artist & Client Tips</Text>
+      <Text
+        style={{
+          fontFamily: 'Denver-Serial-Bold',
+          fontSize: 32,
+          color: '#E1FF00',
+          marginBottom: 10,
+        }}
+      >
+        Artist & Client Tips
+      </Text>
       <View style={styles.line} />
 
-      <ScrollView style={styles.scroll}>
+      <ScrollView style={[styles.scroll, { height: screenHeight * 0.9 }]}>
         {options.map((option) => (
           <TouchableOpacity
             key={option.id}
@@ -55,13 +65,6 @@ const styles = StyleSheet.create({
     paddingTop: 40,
     paddingHorizontal: 20,
   },
-  label: {
-    color: '#E1FF00',
-    fontSize: 30,
-    fontWeight: '700',
-    marginBottom: 5,
-    alignSelf: 'center',
-  },
   logo: {
     width: '90%',
     height: 45,
@@ -82,7 +85,7 @@ const styles = StyleSheet.create({
   option: {
     width: '100%',
     height: 80,
-    marginBottom: 0,
+    marginBottom: 15,
     justifyContent: 'center',
     alignItems: 'center',
   },

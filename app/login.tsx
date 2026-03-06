@@ -21,13 +21,13 @@ export default function LoginPage() {
           height: screenWidth * 0.75,
           aspectRatio: 1,
           borderRadius: 30,
-          marginBottom: 30,
+          marginBottom: 20,
         }}
         resizeMode="cover"
       />
 
       {/* Welcome Text */}
-      <Text style={{ fontSize: 30, fontWeight: 'bold', marginBottom: 30, color: '#fff' }}>
+      <Text style={{ fontSize: 32, marginBottom: 20, color: '#fff', fontFamily: 'Denver-Serial-Bold' }}>
         WELCOME TO INKWISYO
       </Text>
 

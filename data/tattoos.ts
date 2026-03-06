@@ -75,7 +75,7 @@ export const tattoos = [
     id: 9,
     category: "Journey",
     image: require('@/assets/images/Lightning.png'),
-    title: "Lightning / People Praying",
+    title: "Lightning / People\nPraying",
     meaning: "(Unity, Union, Faith)",
     description: "The lightning or people praying motif represents unity, union, and faith in Batok tattooing. Lightning signifies power and natural energy, symbolizing collective strength and shared purpose. The image of people praying emphasizes devotion, solidarity, and communal interconnectedness. Together, these motifs reflect social cohesion and spiritual commitment. Within Kalinga tradition, they highlight the strength found in faith and unity.",
     height: 200
