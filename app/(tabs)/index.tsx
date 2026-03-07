@@ -1,13 +1,25 @@
 import { tattoos } from '@/data/tattoos';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useRouter } from 'expo-router';
-import { useState } from 'react';
-import { Image, ScrollView, Text, TouchableOpacity, View } from 'react-native';
+import { useEffect, useState } from 'react';
+import { Dimensions, Image, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 
 export default function HomeScreen() {
   const router = useRouter();
   const [category, setCategory] = useState('All');
-
+  const { height: SCREEN_HEIGHT } = Dimensions.get('window');
   const categories = ['All', 'Animals', 'Directional & Journey'];
+  
+  // ------------------ CHECK TOKEN ------------------
+  useEffect(() => {
+    const checkToken = async () => {
+      const token = await AsyncStorage.getItem('token'); // or 'userToken' / whatever key you store
+      if (!token) {
+        router.replace('/login'); // redirect to login if no token
+      }
+    };
+    checkToken();
+  }, []);
 
   // Filtered tattoos based on category
   const filtered =
@@ -91,44 +103,34 @@ export default function HomeScreen() {
         })}
       </View>
 
-      {/* Image Gallery */}
-      <ScrollView contentContainerStyle={{ paddingHorizontal: 20 }}>
-        <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-          {/* Left Column */}
-          <View style={{ flex: 1, marginRight: 10 }}>
-            {leftColumn.map((item) => (
-              <TouchableOpacity key={item.id} onPress={() => openDetails(item.id)}>
-                <Image
-                  source={item.image}
-                  style={{
-                    width: '100%',
-                    height: item.height,
-                    borderRadius: 10,
-                    marginBottom: 10,
-                  }}
-                />
-              </TouchableOpacity>
-            ))}
-          </View>
+      {/* Image Gallery (90% of screen height) */}
+      <View style={{ height: SCREEN_HEIGHT * 0.67 }}>
+        <ScrollView contentContainerStyle={{ paddingHorizontal: 20 }}>
+          <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+            <View style={{ flex: 1, marginRight: 10 }}>
+              {leftColumn.map((item) => (
+                <TouchableOpacity key={item.id} onPress={() => openDetails(item.id)}>
+                  <Image
+                    source={item.image}
+                    style={{ width: '100%', height: item.height, borderRadius: 10, marginBottom: 10 }}
+                  />
+                </TouchableOpacity>
+              ))}
+            </View>
 
-          {/* Right Column */}
-          <View style={{ flex: 1, marginLeft: 10 }}>
-            {rightColumn.map((item) => (
-              <TouchableOpacity key={item.id} onPress={() => openDetails(item.id)}>
-                <Image
-                  source={item.image}
-                  style={{
-                    width: '100%',
-                    height: item.height,
-                    borderRadius: 10,
-                    marginBottom: 10,
-                  }}
-                />
-              </TouchableOpacity>
-            ))}
+            <View style={{ flex: 1, marginLeft: 10 }}>
+              {rightColumn.map((item) => (
+                <TouchableOpacity key={item.id} onPress={() => openDetails(item.id)}>
+                  <Image
+                    source={item.image}
+                    style={{ width: '100%', height: item.height, borderRadius: 10, marginBottom: 10 }}
+                  />
+                </TouchableOpacity>
+              ))}
+            </View>
           </View>
-        </View>
-      </ScrollView>
+        </ScrollView>
+      </View>
     </View>
   );
 }

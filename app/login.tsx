@@ -1,4 +1,4 @@
-// app/login.tsx
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useRouter } from 'expo-router';
 import React from 'react';
 import { Dimensions, Image, Text, TextInput, TouchableOpacity, View } from 'react-native';
@@ -7,7 +7,14 @@ export default function LoginPage() {
   const router = useRouter();
   const screenWidth = Dimensions.get('window').width;
 
-  const handleLogin = () => router.replace('/(tabs)');
+  const handleLogin = async () => {
+    // Set fixed token
+    await AsyncStorage.setItem('token', 'my-fixed-token-123');
+
+    // Navigate to tabs
+    router.replace('/(tabs)');
+  };
+
   const handleCreateAccount = () => router.push('/registration');
 
   return (
@@ -26,12 +33,10 @@ export default function LoginPage() {
         resizeMode="cover"
       />
 
-      {/* Welcome Text */}
       <Text style={{ fontSize: 32, marginBottom: 20, color: '#fff', fontFamily: 'Denver-Serial-Bold' }}>
         WELCOME TO INKWISYO
       </Text>
 
-      {/* Username */}
       <TextInput
         placeholder="Nickname/Email"
         placeholderTextColor="#FFFFFF"
@@ -44,15 +49,9 @@ export default function LoginPage() {
           marginBottom: 15,
           borderRadius: 25,
           backgroundColor: 'rgba(244, 244, 244, 0.27)',
-          shadowColor: '#000',
-          shadowOffset: { width: 0, height: 2 },
-          shadowOpacity: 0.1,
-          shadowRadius: 4,
-          elevation: 2,
         }}
       />
 
-      {/* Password */}
       <TextInput
         placeholder="Password"
         secureTextEntry
@@ -66,15 +65,9 @@ export default function LoginPage() {
           marginBottom: 25,
           borderRadius: 25,
           backgroundColor: 'rgba(244, 244, 244, 0.27)',
-          shadowColor: '#000',
-          shadowOffset: { width: 0, height: 2 },
-          shadowOpacity: 0.1,
-          shadowRadius: 4,
-          elevation: 2,
         }}
       />
 
-      {/* Sign In Button */}
       <TouchableOpacity
         onPress={handleLogin}
         style={{
@@ -90,40 +83,11 @@ export default function LoginPage() {
         <Text style={{ color: '#fff', fontWeight: 'bold', fontSize: 16 }}>Sign In</Text>
       </TouchableOpacity>
 
-      {/* Create Account */}
-      <TouchableOpacity onPress={handleCreateAccount} style={{ paddingVertical: 10, marginBottom: 0, width: '100%', alignItems: 'center' }}>
+      <TouchableOpacity onPress={handleCreateAccount} style={{ paddingVertical: 10, width: '100%', alignItems: 'center' }}>
         <Text style={{ color: '#fff', fontWeight: '500', textAlign: 'center' }}>
           New on Inkwisyo? <Text style={{ fontWeight: 'bold', color: '#8C8ECF', textDecorationLine: 'underline' }}>Create an Account</Text>
         </Text>
       </TouchableOpacity>
-
-      {/* Separator */}
-      <View style={{ flexDirection: 'row', alignItems: 'center', marginVertical: 0, width: '100%' }}>
-        <View style={{ flex: 1, height: 1, backgroundColor: '#ccc' }} />
-        <Text style={{ marginHorizontal: 10, color: '#999' }}>or</Text>
-        <View style={{ flex: 1, height: 1, backgroundColor: '#ccc' }} />
-      </View>
-
-      {/* Social Login Images */}
-      <View style={{ flexDirection: 'row', justifyContent: 'space-between', width: '45%', marginTop: 15 }}>
-        {/* Gmail */}
-        <TouchableOpacity>
-          <Image
-            source={require('../assets/images/Gmail.png')}
-            style={{ width: 60, height: 60, borderRadius: 30 }}
-            resizeMode="contain"
-          />
-        </TouchableOpacity>
-
-        {/* Facebook */}
-        <TouchableOpacity>
-          <Image
-            source={require('../assets/images/Facebook.png')}
-            style={{ width: 60, height: 60, borderRadius: 30 }}
-            resizeMode="contain"
-          />
-        </TouchableOpacity>
-      </View>
     </View>
   );
 }
