@@ -54,5 +54,13 @@ export const modernTattoos = [
     image2: require('@/assets/images/Cybersigilism2.png'),
     title: "Cyber Sigilism",
     description: "Cyber sigilism tattoos are a contemporary tattoo style influenced by early 2000s (Y2K) digital culture, combining sharp, fragmented, and glitch-inspired visual elements with the concept of mystical sigils. Characterized by abstract, intricate, and often chaotic compositions of thorn-like or tribal-inspired black linework, these designs create a bold and futuristic aesthetic. Beyond their visual appeal, they may serve as personalized and symbolic markings that represent individual intentions, beliefs, or identity, while in other cases functioning primarily as stylistic expressions rooted in gothic and cyber-inspired art."
+  },
+  {
+    id: 8,
+    category: "Modern",
+    image: require('@/assets/images/RealismOption.png'),
+    image2: require('@/assets/images/Realism.png'),
+    title: "Realism",
+    description: "Realism tattoos are designed to reproduce photographs or real-life subjects with a high level of accuracy, dimensional depth, and refined shading techniques. Unlike traditional tattoo styles that rely on bold outlines, realism emphasizes smooth transitions, tonal variation, and precise detailing to achieve a lifelike, three-dimensional effect. This style is widely executed in both full color and black-and-grey approaches, frequently depicting portraits, animals, and natural elements. In recent developments, substyles such as micro-realism and geo-realism have emerged, further expanding its technical and aesthetic range."
   }
 ];

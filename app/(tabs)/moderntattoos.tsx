@@ -10,51 +10,41 @@ export default function ModernTattoo() {
   };
 
   return (
-    <View style={styles.container}>
-      {/* Logo */}
-      <Image
-        source={require('@/assets/images/Inkwisyo.png')}
-        resizeMode="contain"
-        style={styles.logo}
-      />
-      
-      {/* Label above line */}
-      <Text
-        style={{
-            fontFamily: 'Denver-Serial-Bold',
-            fontSize: 32,
-            color: '#E1FF00', // optional, keep your color
-            marginBottom: 10,
-        }}
-        >
-        Modern Tattoo Styles
-      </Text>
+    <View style={{ flex: 1, backgroundColor: '#000' }}>
+      <View style={styles.container}>
+        <Image
+          source={require('@/assets/images/Inkwisyo.png')}
+          resizeMode="contain"
+          style={styles.logo}
+        />
 
-      <View style={styles.line} />
+        <Text style={styles.title}>Modern Tattoo Styles</Text>
 
-      <ScrollView style={styles.scroll}>
-        {modernTattoos.map((tattoo) => (
-          <TouchableOpacity
-            key={tattoo.id}
-            style={styles.option}
-            onPress={() => openDetails(tattoo.id)}
-          >
-            <Image
-              source={tattoo.image}
-              style={styles.mainImage}
-              resizeMode="contain"
-            />
-          </TouchableOpacity>
-        ))}
-      </ScrollView>
+        <View style={styles.line} />
+
+        <ScrollView style={styles.scroll}>
+          {modernTattoos.map((tattoo) => (
+            <TouchableOpacity
+              key={tattoo.id}
+              style={styles.option}
+              onPress={() => openDetails(tattoo.id)}
+            >
+              <Image
+                source={tattoo.image}
+                style={styles.mainImage}
+                resizeMode="contain"
+              />
+            </TouchableOpacity>
+          ))}
+        </ScrollView>
+      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#000',
+    flex: 0.9, // takes 90% of screen height
     alignItems: 'center',
     paddingTop: 40,
     paddingHorizontal: 20,
@@ -66,6 +56,13 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     marginBottom: 10,
     marginTop: 30,
+  },
+
+  title: {
+    fontFamily: 'Denver-Serial-Bold',
+    fontSize: 32,
+    color: '#E1FF00',
+    marginBottom: 10,
   },
 
   line: {
@@ -83,9 +80,9 @@ const styles = StyleSheet.create({
   option: {
     width: '100%',
     height: 80,
-    marginBottom: 0,
     justifyContent: 'center',
     alignItems: 'center',
+    marginBottom: 0,
   },
 
   mainImage: {

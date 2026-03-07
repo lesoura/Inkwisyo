@@ -7,18 +7,29 @@ export default function AboutUsPage() {
   return (
     <View style={styles.container}>
       {/* Top label */}
-      <Text style={{ fontFamily: 'Denver-Serial-Bold', fontSize: 32, color: '#fff', marginBottom: 10, }}>About Us</Text>
+      <Text style={{ fontFamily: 'Denver-Serial-Bold', fontSize: 32, color: '#fff', marginBottom: 10 }}>About Us</Text>
       <View style={styles.line} />
 
       {/* Description */}
       <ScrollView style={{ width: '100%' }}>
         <Text style={[styles.description, { textAlign: 'justify' }]}>
-            Inkwisyo is a cultural and informative digital platform designed to empower both aspiring tattoo artists and clients by bridging the gap between artistic knowledge, cultural appreciation, and practical guidance in the tattoo community. At its core, Inkwisyo aims to be more than just a resource — it is a space where creativity meets education, where tradition meets innovation, and where enthusiasts can confidently explore the world of tattoo art.
+          Inkwisyo is a cultural and informative digital platform designed to empower both aspiring tattoo artists and clients by bridging the gap between artistic knowledge, cultural appreciation, and practical guidance in the tattoo community. At its core, Inkwisyo aims to be more than just a resource — it is a space where creativity meets education, where tradition meets innovation, and where enthusiasts can confidently explore the world of tattoo art.
 
-            {"\n\n"}Inkwisyo was born out of a shared passion for tattoos and a desire to elevate the way people learn about this expressive art form. Tattoos carry stories — cultural, personal, and artistic — and we believe that understanding these narratives enriches both the experience and the craft. Our platform provides curated insights, educational content, design walkthroughs, and community-centric features that support users at every step of their tattoo journey.
+          {"\n\n"}Inkwisyo was born out of a shared passion for tattoos and a desire to elevate the way people learn about this expressive art form. Tattoos carry stories — cultural, personal, and artistic — and we believe that understanding these narratives enriches both the experience and the craft. Our platform provides curated insights, educational content, design walkthroughs, and community-centric features that support users at every step of their tattoo journey.
 
-            {"\n\n"}Whether you are an aspiring artist seeking to refine your skills, a first-time client exploring meaningful designs, or someone who simply appreciates the artistry behind tattoos, Inkwisyo offers a welcoming and informative environment to connect, learn, and grow.
+          {"\n\n"}Whether you are an aspiring artist seeking to refine your skills, a first-time client exploring meaningful designs, or someone who simply appreciates the artistry behind tattoos, Inkwisyo offers a welcoming and informative environment to connect, learn, and grow.
         </Text>
+
+        {/* Our Team */}
+        <Text style={styles.teamHeader}>Our Team</Text>
+              <View style={styles.line} />
+        <View style={styles.teamContainer}>
+          <Text style={styles.teamMember}>Aldrin Bawi-in</Text>
+          <Text style={styles.teamMember}>Francis Jerico Nivero</Text>
+          <Text style={styles.teamMember}>Brian Russel Ganabis</Text>
+          <Text style={styles.teamMember}>Christian Gonzales</Text>
+          <Text style={styles.teamMember}>Ian Gabriel Lacanilao</Text>
+        </View>
 
         {/* Back button */}
         <TouchableOpacity
@@ -58,6 +69,23 @@ const styles = StyleSheet.create({
     fontSize: 16,
     lineHeight: 24,
     marginBottom: 30,
+  },
+  teamHeader: {
+    fontFamily: 'Denver-Serial-Bold',
+    fontSize: 28,
+    color: '#fff',
+    textAlign: 'center',
+    marginBottom: 15,
+  },
+  teamContainer: {
+    alignItems: 'center',
+    marginBottom: 30,
+  },
+  teamMember: {
+    color: '#fff',
+    fontSize: 18,
+    marginVertical: 3,
+    textAlign: 'center',
   },
   backButton: {
     width: '90%',

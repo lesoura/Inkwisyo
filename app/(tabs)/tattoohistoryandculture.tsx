@@ -1,6 +1,7 @@
+import { FontAwesome } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import { useState } from 'react';
-import { Image, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Image, Linking, Pressable, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 export default function TattooHistoryAndCulture() {
   const router = useRouter();
@@ -28,7 +29,19 @@ export default function TattooHistoryAndCulture() {
           />
 
           {/* SECTION 1 */}
-          <Text style={styles.sectionTitle}>Where is Buscalan?</Text>
+          <View style={{ flexDirection: 'row', alignItems: 'flex-start', marginBottom: 10 }}>
+            <Text style={{ color: '#E1FF00', fontSize: 30, width: '90%', fontFamily: 'Denver-Serial-Bold' }}>
+              Where is Buscalan?
+            </Text>
+
+            <TouchableOpacity
+              style={{ width: '10%', alignItems: 'flex-end', marginTop: 10 }}
+              onPress={() => Linking.openURL('https://en.wikipedia.org/wiki/Buscalan')}
+            >
+              <FontAwesome name="link" size={20} color="#fff" />
+            </TouchableOpacity>
+          </View>
+
           <Text style={styles.description}>
             Located in the northern part of the Philippines, Buscalan Village is situated in the province of Kalinga. This remote village is perched on a mountain ridge, surrounded by lush rice terraces and dramatic landscapes that seem to be pulled straight out of a postcard. Getting to Buscalan requires determination, as the journey involves a combination of long drives and challenging hikes, but the rewards are more than worth it.
           </Text>
@@ -43,7 +56,18 @@ export default function TattooHistoryAndCulture() {
           />
 
           {/* SECTION 2 */}
-          <Text style={styles.sectionTitle}>Buscalan Tattoo Tradition</Text>
+          <View style={{ flexDirection: 'row', alignItems: 'flex-start', marginBottom: 10 }}>
+            <Text style={{ color: '#E1FF00', fontSize: 28, width: '90%', fontFamily: 'Denver-Serial-Bold' }}>
+              Buscalan Tattoo Tradition
+            </Text>
+
+            <TouchableOpacity
+              style={{ width: '10%', alignItems: 'flex-end', marginTop: 10 }}
+              onPress={() => Linking.openURL('https://en.wikipedia.org/wiki/Buscalan')}
+            >
+              <FontAwesome name="link" size={20} color="#fff" />
+            </TouchableOpacity>
+          </View>
           <Text style={styles.description}>
             Buscalan is world-renowned for its traditional Kalinga tattoos, known as “batek.” These tattoos are more than just body art; they are deeply embedded in the cultural identity of the Kalinga people. The tattoos symbolize strength, bravery, and social status, and they are often considered a rite of passage.
           </Text>
@@ -55,7 +79,18 @@ export default function TattooHistoryAndCulture() {
           />
 
           {/* SECTION 3 */}
-          <Text style={styles.sectionTitle}>Buscalan Tattoo Village</Text>
+          <View style={{ flexDirection: 'row', alignItems: 'flex-start', marginBottom: 10 }}>
+            <Text style={{ color: '#E1FF00', fontSize: 28, width: '90%', fontFamily: 'Denver-Serial-Bold' }}>
+              Buscalan Tattoo Village
+            </Text>
+
+            <TouchableOpacity
+              style={{ width: '10%', alignItems: 'flex-end', marginTop: 10 }}
+              onPress={() => Linking.openURL('https://en.wikipedia.org/wiki/Buscalan')}
+            >
+              <FontAwesome name="link" size={20} color="#fff" />
+            </TouchableOpacity>
+          </View>
           <Text style={styles.description}>
             Buscalan Village has become synonymous with traditional Kalinga tattooing. The village is a living museum of ancient tattoo practices, where artisans still use the traditional method of hand-tapping ink into the skin using a thorn from a pomelo tree and a bamboo stick. This method has been passed down through generations, with Apo Whang-Od being the most famous practitioner.
           </Text>
@@ -70,7 +105,18 @@ export default function TattooHistoryAndCulture() {
           />
 
           {/* SECTION 4 */}
-          <Text style={styles.sectionTitle}>Tattoo Buscalan Meaning</Text>
+          <View style={{ flexDirection: 'row', alignItems: 'flex-start', marginBottom: 10 }}>
+            <Text style={{ color: '#E1FF00', fontSize: 28, width: '90%', fontFamily: 'Denver-Serial-Bold' }}>
+              Tattoo Buscalan Meaning
+            </Text>
+
+            <TouchableOpacity
+              style={{ width: '10%', alignItems: 'flex-end', marginTop: 10 }}
+              onPress={() => Linking.openURL('https://en.wikipedia.org/wiki/Buscalan')}
+            >
+              <FontAwesome name="link" size={20} color="#fff" />
+            </TouchableOpacity>
+          </View>          
           <Text style={styles.description}>
             Each tattoo design in Buscalan carries its own significance. Traditionally, Kalinga tattoos were given to warriors as a mark of their bravery in battle. Over time, the meanings have evolved, but the deep spiritual and cultural significance remains. For many, getting a tattoo in Buscalan is a way to honor and preserve the ancient traditions of the Kalinga people.
           </Text>
@@ -82,7 +128,19 @@ export default function TattooHistoryAndCulture() {
           />
 
           {/* SECTION 5 */}
-          <Text style={styles.sectionTitle}>Buscalan Tattoo Designs</Text>
+          <View style={{ flexDirection: 'row', alignItems: 'flex-start', marginBottom: 10 }}>
+            <Text style={{ color: '#E1FF00', fontSize: 28, width: '90%', fontFamily: 'Denver-Serial-Bold' }}>
+              Buscalan Tattoo Designs
+            </Text>
+
+            <TouchableOpacity
+              style={{ width: '10%', alignItems: 'flex-end', marginTop: 10 }}
+              onPress={() => Linking.openURL('https://en.wikipedia.org/wiki/Buscalan')}
+            >
+              <FontAwesome name="link" size={20} color="#fff" />
+            </TouchableOpacity>
+          </View>
+
           <Text style={styles.description}>
           Each tattoo design in Buscalan carries its own significance. Traditionally, Kalinga tattoos were given to warriors as a mark of their bravery in battle. Over time, the meanings have evolved, but the deep spiritual and cultural significance remains. For many, getting a tattoo in Buscalan is a way to honor and preserve the ancient traditions of the Kalinga people.
           </Text>
@@ -94,7 +152,19 @@ export default function TattooHistoryAndCulture() {
           />
 
           {/* SECTION 6 */}
-          <Text style={styles.sectionTitle}>Female Buscalan Tattoo Designs</Text>
+          <View style={{ flexDirection: 'row', alignItems: 'flex-start', marginBottom: 10 }}>
+            <Text style={{ color: '#E1FF00', fontSize: 28, width: '90%', fontFamily: 'Denver-Serial-Bold' }}>
+              Female Buscalan Tattoo Designs
+            </Text>
+
+            <TouchableOpacity
+              style={{ width: '10%', alignItems: 'flex-end', marginTop: 10 }}
+              onPress={() => Linking.openURL('https://en.wikipedia.org/wiki/Buscalan')}
+            >
+              <FontAwesome name="link" size={20} color="#fff" />
+            </TouchableOpacity>
+          </View>
+
           <Text style={styles.description}>
             Female Kalinga tattoos are often intricate and elaborate, covering large portions of the body. Common designs include repetitive geometric patterns, which symbolize fertility, beauty, and status. These designs are traditionally placed on the arms, legs, and back, often forming an intricate web of interconnected patterns.
           </Text>
@@ -106,7 +176,19 @@ export default function TattooHistoryAndCulture() {
           />
 
           {/* SECTION 7 */}
-          <Text style={styles.sectionTitle}>Male Buscalan Tattoo Designs</Text>
+          <View style={{ flexDirection: 'row', alignItems: 'flex-start', marginBottom: 10 }}>
+            <Text style={{ color: '#E1FF00', fontSize: 28, width: '90%', fontFamily: 'Denver-Serial-Bold' }}>
+              Male Buscalan Tattoo Designs
+            </Text>
+
+            <TouchableOpacity
+              style={{ width: '10%', alignItems: 'flex-end', marginTop: 10 }}
+              onPress={() => Linking.openURL('https://en.wikipedia.org/wiki/Buscalan')}
+            >
+              <FontAwesome name="link" size={20} color="#fff" />
+            </TouchableOpacity>
+          </View>
+
           <Text style={styles.description}>
             Male tattoos in Buscalan tend to be bold and straightforward, often representing the wearer’s achievements in battle or their social status. These designs include centipedes, which symbolize protection, and other animal motifs that signify strength and courage. The designs are usually placed on the chest, back, and arms, serving as a mark of honor and respect within the community.
           </Text>
@@ -130,7 +212,18 @@ export default function TattooHistoryAndCulture() {
                 resizeMode="contain"
               />
 
-              <Text style={styles.sectionTitle}>1. Background History of Batok (Indigenous Filipino Tattooing)</Text>
+             <View style={{ flexDirection: 'row', marginBottom: 10, alignItems: 'flex-start' }}>
+              <Text style={{ color: '#E1FF00', fontSize: 28, width: '90%', fontFamily: 'Denver-Serial-Bold' }}>
+                1. Background History of Batok (Indigenous Filipino Tattooing)
+              </Text>
+
+              <TouchableOpacity
+                style={{ width: '10%', alignItems: 'flex-end', marginTop: 10 }}
+                onPress={() => Linking.openURL('https://en.wikipedia.org/wiki/Buscalan')}
+              >
+                <FontAwesome name="link" size={20} color="#fff" />
+              </TouchableOpacity>
+            </View>       
               <Text style={styles.description}>
                 Batok (also known as Fatek, Burik, Batek, Patik, Tatak) is a pre-colonial indigenous Filipino tattooing practice, most documented in the Cordillera region of Northern Luzon. It predates Spanish colonization and functioned as a social, spiritual, and communal system, not merely body decoration.
               </Text>
@@ -157,7 +250,18 @@ export default function TattooHistoryAndCulture() {
                 Despite this, batok survived through family lineages, particularly among Kalinga communities, and is now preserved through practitioners like Whang-Od and cultural advocates.
               </Text>
 
-              <Text style={styles.sectionTitle}>2. Tribe & Regional Information</Text>
+              <View style={{ flexDirection: 'row', alignItems: 'flex-start', marginBottom: 10 }}>
+                <Text style={{ color: '#E1FF00', fontSize: 28, width: '90%', fontFamily: 'Denver-Serial-Bold' }}>
+                  2. Tribe & Regional Information
+                </Text>
+
+                <TouchableOpacity
+                  style={{ width: '10%', alignItems: 'flex-end', marginTop: 10 }}
+                  onPress={() => Linking.openURL('https://en.wikipedia.org/wiki/Buscalan')}
+                >
+                  <FontAwesome name="link" size={20} color="#fff" />
+                </TouchableOpacity>
+              </View>              
               <Text style={styles.description}>Batok was historically practiced across multiple Cordillera ethnolinguistic groups, including:</Text>
                 <Text style={styles.description}>• Kalinga (Northern & Southern) – strongest preservation</Text>
                 <Text style={styles.description}>• Bontok</Text>
@@ -173,7 +277,19 @@ export default function TattooHistoryAndCulture() {
                 resizeMode="contain"
               />
 
-              <Text style={styles.sectionTitle}>3. Tattoo Process (Batok Method)</Text>
+              <View style={{ flexDirection: 'row', alignItems: 'flex-start', marginBottom: 10 }}>
+                <Text style={{ color: '#E1FF00', fontSize: 28, width: '90%', fontFamily: 'Denver-Serial-Bold' }}>
+                  3. Tattoo Process (Batok Method)
+                </Text>
+
+                <TouchableOpacity
+                  style={{ width: '10%', alignItems: 'flex-end', marginTop: 10 }}
+                  onPress={() => Linking.openURL('https://en.wikipedia.org/wiki/Buscalan')}
+                >
+                  <FontAwesome name="link" size={20} color="#fff" />
+                </TouchableOpacity>
+              </View>
+
                 <Text style={styles.description}>Batok is hand-tapped, not machine-done.</Text>
 
               <Text style={styles.sectionSubTitle}>Tools & Materials:</Text>
@@ -195,7 +311,18 @@ export default function TattooHistoryAndCulture() {
                 resizeMode="contain"
               />
 
-              <Text style={styles.sectionTitle}>4. Design & Symbolism</Text>
+              <View style={{ flexDirection: 'row', alignItems: 'flex-start', marginBottom: 10 }}>
+                <Text style={{ color: '#E1FF00', fontSize: 28, width: '90%', fontFamily: 'Denver-Serial-Bold' }}>
+                  4. Design & Symbolism
+                </Text>
+
+                <TouchableOpacity
+                  style={{ width: '10%', alignItems: 'flex-end', marginTop: 10 }}
+                  onPress={() => Linking.openURL('https://en.wikipedia.org/wiki/Buscalan')}
+                >
+                  <FontAwesome name="link" size={20} color="#fff" />
+                </TouchableOpacity>
+              </View>
               <Text style={styles.description}>Batok designs are not freely chosen. They are:</Text>
                 <Text style={styles.description}>• Revealed, not selected</Text>
                 <Text style={styles.description}>• Based on ancestral lineage and region</Text>
@@ -215,7 +342,19 @@ export default function TattooHistoryAndCulture() {
                   <Text style={styles.description}>• Symbols carry responsibility, not just protection</Text>
                   <Text style={styles.description}>• Markings are believed to call in ancestral guidance</Text>
 
-              <Text style={styles.sectionTitle}>5. Ritual & Social Meaning</Text>
+              <View style={{ flexDirection: 'row', alignItems: 'flex-start', marginBottom: 10 }}>
+                <Text style={{ color: '#E1FF00', fontSize: 28, width: '90%', fontFamily: 'Denver-Serial-Bold' }}>
+                  5. Ritual & Social Meaning
+                </Text>
+
+                <TouchableOpacity
+                  style={{ width: '10%', alignItems: 'flex-end', marginTop: 10 }}
+                  onPress={() => Linking.openURL('https://en.wikipedia.org/wiki/Buscalan')}
+                >
+                  <FontAwesome name="link" size={20} color="#fff" />
+                </TouchableOpacity>
+              </View>
+
               <Text style={styles.description}>
                 Batok is a collective occupation, meaning its significance exists beyond the individual.
               </Text>
@@ -238,7 +377,18 @@ export default function TattooHistoryAndCulture() {
                 resizeMode="contain"
               />
 
-              <Text style={styles.sectionTitle}>6. Psychological & Cultural Meaning</Text>
+              <View style={{ flexDirection: 'row', alignItems: 'flex-start', marginBottom: 10 }}>
+                <Text style={{ color: '#E1FF00', fontSize: 28, width: '90%', fontFamily: 'Denver-Serial-Bold' }}>
+                  6. Psychological & Cultural Meaning
+                </Text>
+
+                <TouchableOpacity
+                  style={{ width: '10%', alignItems: 'flex-end', marginTop: 10 }}
+                  onPress={() => Linking.openURL('https://en.wikipedia.org/wiki/Buscalan')}
+                >
+                  <FontAwesome name="link" size={20} color="#fff" />
+                </TouchableOpacity>
+              </View>
 
               <Text style={styles.sectionSubTitle}>Identity & Mental Resilience</Text>
                 <Text style={[styles.description, {  }]}>  • Enduring pain = courage, discipline, emotional regulation</Text>
@@ -256,7 +406,18 @@ export default function TattooHistoryAndCulture() {
               <Text style={[styles.description, {  }]}>  • A revealing, not an adding</Text>
               <Text style={[styles.description, {  }]}>  • A reconnection to something dormant</Text>
 
-              <Text style={styles.sectionTitle}>7. Why Batok Matters Today (Preservation Context)</Text>
+              <View style={{ flexDirection: 'row', alignItems: 'flex-start', marginBottom: 10 }}>
+                <Text style={{ color: '#E1FF00', fontSize: 28, width: '90%', fontFamily: 'Denver-Serial-Bold' }}>
+                  7. Why Batok Matters Today (Preservation Context)
+                </Text>
+
+                <TouchableOpacity
+                  style={{ width: '10%', alignItems: 'flex-end', marginTop:10 }}
+                  onPress={() => Linking.openURL('https://en.wikipedia.org/wiki/Buscalan')}
+                >
+                  <FontAwesome name="link" size={20} color="#fff" />
+                </TouchableOpacity>
+              </View>
               <Text style={styles.description}>Batok declined because:</Text>
               <Text style={[styles.description, {  }]}>  • Its original social functions were disrupted</Text>
               <Text style={[styles.description, {  }]}>  • Western medicine, currency, clothing, and religion replaced symbolic roles</Text>
@@ -275,7 +436,19 @@ export default function TattooHistoryAndCulture() {
                 resizeMode="contain"
               />
 
-              <Text style={styles.sectionTitle}>Guide on Getting a Tattoo From Apo Whang-Od, The Last Mambabatok</Text>
+              <View style={{ flexDirection: 'row', alignItems: 'flex-start', marginBottom: 10 }}>
+                <Text style={{ color: '#E1FF00', fontSize: 28, width: '90%', fontFamily: 'Denver-Serial-Bold' }}>
+                  Guide on Getting a Tattoo From Apo Whang-Od, The Last Mambabatok
+                </Text>
+
+                <TouchableOpacity
+                  style={{ width: '10%', alignItems: 'flex-end', marginTop: 10 }}
+                  onPress={() => Linking.openURL('https://en.wikipedia.org/wiki/Buscalan')}
+                >
+                  <FontAwesome name="link" size={20} color="#fff" />
+                </TouchableOpacity>
+              </View>
+
               <Text style={styles.description}>
                 Batok is a hand-poke tattoo using pomelo or lemon thorn as a needle and mixed charcoal soot with water in a coconut shell as an ink. The ink is mixed with blood when hand poked against the skin, which creates permanent ink on the body. For people from Kalinga, this body art is more than just an accessory. It originated from the culture of tribal war and headhunting, especially for men. In the past, when a man returned victorious from a tribal war, he received a batok tattoo from a mambabatok (tattoo artist), representing his strength, bravery, and ability. For women, tattoos start at age 12 and represent beauty, wealth, and readiness for marriage. The art of getting a batok tattoo includes fortune telling and chanting rituals performed by the mambabatok for good luck.
               </Text>

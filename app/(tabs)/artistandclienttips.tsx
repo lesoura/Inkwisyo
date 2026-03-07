@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
   option: {
     width: '100%',
     height: 80,
-    marginBottom: 15,
+    marginBottom: 5,
     justifyContent: 'center',
     alignItems: 'center',
   },
