@@ -1,14 +1,15 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useFonts } from 'expo-font';
 import * as NavigationBar from 'expo-navigation-bar';
-import { Stack } from 'expo-router';
+import { Stack, useRouter } from 'expo-router';
 import * as ScreenOrientation from 'expo-screen-orientation';
 import { StatusBar } from 'expo-status-bar';
 import React, { useEffect, useRef, useState } from 'react';
-import { Animated, Image, View } from 'react-native';
+import { Animated, AppState, AppStateStatus, Image, TouchableWithoutFeedback, View } from 'react-native';
 import 'react-native-reanimated';
 
 export default function RootLayout() {
+  const router = useRouter();
   const [fontsLoaded] = useFonts({
     'Denver-Serial-Bold': require('../assets/images/denver-serial-bold.ttf'),
   });
@@ -16,17 +17,40 @@ export default function RootLayout() {
   const [showSplash, setShowSplash] = useState(true);
   const fadeAnim = useRef(new Animated.Value(1)).current;
 
+  // --- Lock timer ---
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const appState = useRef<AppStateStatus>(AppState.currentState);
+
+  const startLockTimer = () => {
+    if (timerRef.current) clearTimeout(timerRef.current);
+    timerRef.current = setTimeout(async () => {
+      // optional: clear token on lock
+      await AsyncStorage.removeItem('token');
+      router.replace('/lock' as any);
+    }, 3 * 60 * 1000); // 3 minutes
+  };
+
+  const resetLockTimer = () => startLockTimer();
+
   useEffect(() => {
-    // Lock to portrait
-    ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT);
+    startLockTimer();
+
+    const subscription = AppState.addEventListener('change', (nextAppState) => {
+      if (appState.current.match(/inactive|background/) && nextAppState === 'active') {
+        startLockTimer();
+      }
+      appState.current = nextAppState;
+    });
+
+    return () => {
+      if (timerRef.current) clearTimeout(timerRef.current);
+      subscription.remove();
+    };
   }, []);
 
-  // inside RootLayout
+  // --- Splash & fonts ---
   useEffect(() => {
-    const clearToken = async () => {
-      await AsyncStorage.removeItem('token');
-    };
-    clearToken();
+    ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT);
   }, []);
 
   useEffect(() => {
@@ -36,10 +60,10 @@ export default function RootLayout() {
     const timer = setTimeout(() => {
       Animated.timing(fadeAnim, {
         toValue: 0,
-        duration: 800, // fade duration
+        duration: 800,
         useNativeDriver: true,
       }).start(() => setShowSplash(false));
-    }, 4000); // splash duration
+    }, 4000);
 
     return () => clearTimeout(timer);
   }, []);
@@ -58,7 +82,7 @@ export default function RootLayout() {
         }}
       >
         <Image
-          source={require('../assets/images/Inkwisyo-splash2.gif')}
+          source={require('../assets/images/Inkwisyo-splashV3.gif')}
           style={{ height: '100%' }}
           resizeMode="contain"
         />
@@ -66,17 +90,20 @@ export default function RootLayout() {
     );
   }
 
+  // --- Wrap entire app with TouchableWithoutFeedback to detect taps and reset timer ---
   return (
-    <View style={{ flex: 1, backgroundColor: '#121212' }}>
-      <Stack>
-        <Stack.Screen name="login" options={{ headerShown: false }} />
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="registration" options={{ headerShown: false }} />
-        <Stack.Screen name="aboutus" options={{ headerShown: false }} />
-        <Stack.Screen name="tattoo-details" options={{ headerShown: false }} />
-        <Stack.Screen name="modal" options={{ presentation: 'modal', title: 'Modal' }} />
-      </Stack>
-      <StatusBar style="light" />
-    </View>
+    <TouchableWithoutFeedback onPress={resetLockTimer}>
+      <View style={{ flex: 1, backgroundColor: '#121212' }}>
+        <Stack>
+          <Stack.Screen name="login" options={{ headerShown: false }} />
+          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+          <Stack.Screen name="registration" options={{ headerShown: false }} />
+          <Stack.Screen name="aboutus" options={{ headerShown: false }} />
+          <Stack.Screen name="tattoo-details" options={{ headerShown: false }} />
+          <Stack.Screen name="modal" options={{ presentation: 'modal', title: 'Modal' }} />
+        </Stack>
+        <StatusBar style="light" />
+      </View>
+    </TouchableWithoutFeedback>
   );
 }
