@@ -1,3 +1,4 @@
+import { Audio } from 'expo-av';
 import { useRouter } from 'expo-router';
 import { Dimensions, Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
@@ -5,7 +6,16 @@ export default function ArtistAndClientTips() {
   const router = useRouter();
   const screenHeight = Dimensions.get('window').height;
 
-  const openDetails = (id: number) => {
+  const playClick = async () => {
+    const { sound } = await Audio.Sound.createAsync(
+      require('@/assets/images/click.wav')
+    );
+    await sound.playAsync();
+  };
+
+  const openDetails = async (id: number) => {
+    await playClick();
+
     if (id === 1) {
       router.push('/ACTips');
     } else if (id === 2) {

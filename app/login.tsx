@@ -1,4 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Audio } from 'expo-av';
 import { useRouter } from 'expo-router';
 import React from 'react';
 import { Dimensions, Image, Text, TextInput, TouchableOpacity, View } from 'react-native';
@@ -7,7 +8,16 @@ export default function LoginPage() {
   const router = useRouter();
   const screenWidth = Dimensions.get('window').width;
 
+  const playClick = async () => {
+    const { sound } = await Audio.Sound.createAsync(
+      require('../assets/images/click.wav')
+    );
+    await sound.playAsync();
+  };
+
   const handleLogin = async () => {
+    await playClick();        // play click sound first
+
     // Set fixed token
     await AsyncStorage.setItem('token', 'my-fixed-token-123');
 

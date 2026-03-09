@@ -1,5 +1,6 @@
 // app/(tabs)/_layout.tsx
 import { Ionicons } from '@expo/vector-icons';
+import { Audio } from 'expo-av';
 import { Tabs, useRouter } from 'expo-router';
 import React, { useState } from 'react';
 import { TouchableOpacity, View } from 'react-native';
@@ -8,16 +9,24 @@ export default function TabLayout() {
   const router = useRouter();
   const [activeTab, setActiveTab] = useState<'home' | 'explore' | 'settings'>('home');
 
-  const paths = {
-  home: '/(tabs)',
-  explore: '/(tabs)/explore',
-  settings: '/(tabs)/settings',
-} as const;
+  const playClick = async () => {
+    const { sound } = await Audio.Sound.createAsync(
+      require('@/assets/images/click.wav')
+    );
+    await sound.playAsync();
+  };
 
-const handlePress = (tab: keyof typeof paths) => {
-  setActiveTab(tab);
-  router.push(paths[tab]);
-};
+  const paths = {
+    home: '/(tabs)',
+    explore: '/(tabs)/explore',
+    settings: '/(tabs)/settings',
+  } as const;
+
+  const handlePress = async (tab: keyof typeof paths) => {
+    await playClick();
+    setActiveTab(tab);
+    router.push(paths[tab]);
+  };
 
   return (
     <View style={{ flex: 1 }}>

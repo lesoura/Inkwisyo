@@ -1,4 +1,5 @@
 import { FontAwesome } from '@expo/vector-icons';
+import { Audio } from 'expo-av';
 import { useRouter } from 'expo-router';
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
@@ -12,6 +13,13 @@ export default function SettingsPage() {
     { label: 'About Us', icon: 'question' },
   ];
 
+  const playClick = async () => {
+    const { sound } = await Audio.Sound.createAsync(
+      require('@/assets/images/click.wav')
+    );
+    await sound.playAsync();
+  };
+
   return (
     <View style={styles.container}>
       {/* Top label */}
@@ -24,7 +32,8 @@ export default function SettingsPage() {
         <TouchableOpacity
           key={idx}
           style={styles.option}
-          onPress={() => {
+          onPress={async() => {
+              await playClick();
             if (opt.label === 'About Us') {
               router.push('/aboutus'); // navigate to About Us page
             }
@@ -42,7 +51,10 @@ export default function SettingsPage() {
         {/* Logout button */}
         <TouchableOpacity
           style={styles.logout}
-          onPress={() => router.push('/login')}
+          onPress={async () => {
+            await playClick();
+            router.push('/login');
+          }}
         >
           <Text style={styles.logoutText}>Logout</Text>
         </TouchableOpacity>

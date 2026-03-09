@@ -1,5 +1,6 @@
 import { tattoos } from '@/data/tattoos';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Audio } from 'expo-av';
 import { useRouter } from 'expo-router';
 import { useEffect, useState } from 'react';
 import { Dimensions, Image, ScrollView, Text, TouchableOpacity, View } from 'react-native';
@@ -9,6 +10,13 @@ export default function HomeScreen() {
   const [category, setCategory] = useState('All');
   const { height: SCREEN_HEIGHT } = Dimensions.get('window');
   const categories = ['All', 'Animals', 'Directional & Journey'];
+
+  const playClick = async () => {
+    const { sound } = await Audio.Sound.createAsync(
+      require('@/assets/images/click.wav')
+    );
+    await sound.playAsync();
+  };
   
   // ------------------ CHECK TOKEN ------------------
   useEffect(() => {
@@ -48,7 +56,8 @@ export default function HomeScreen() {
   });
 
   // Function to navigate to details page
-  const openDetails = (id: number) => {
+  const openDetails = async (id: number) => {
+    await playClick();
     router.push(`/tattoo-details?id=${id}`);
   };
 
@@ -81,7 +90,10 @@ export default function HomeScreen() {
           return (
             <TouchableOpacity
               key={item}
-              onPress={() => setCategory(item)}
+              onPress={async () => {
+                await playClick();
+                setCategory(item);
+              }}
               style={{
                 backgroundColor: isActive ? '#fff' : '#313131',
                 paddingVertical: 8,

@@ -1,12 +1,21 @@
 import { modernTattoos } from '@/data/moderntattoos';
+import { Audio } from 'expo-av';
 import { useRouter } from 'expo-router';
 import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 export default function ModernTattoo() {
   const router = useRouter();
 
-  const openDetails = (id: number) => {
+  const openDetails = async (id: number) => {
+    await playClick();
     router.push(`/moderntattoodetails?id=${id}`);
+  };
+
+  const playClick = async () => {
+    const { sound } = await Audio.Sound.createAsync(
+      require('@/assets/images/click.wav')
+    );
+    await sound.playAsync();
   };
 
   return (

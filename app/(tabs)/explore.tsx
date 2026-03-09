@@ -1,8 +1,16 @@
+import { Audio } from 'expo-av';
 import { useRouter } from 'expo-router';
 import { Image, ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native';
 
 export default function ExplorePage() {
   const router = useRouter();
+
+  const playClick = async () => {
+    const { sound } = await Audio.Sound.createAsync(
+      require('@/assets/images/click.wav')
+    );
+    await sound.playAsync();
+  };
 
   return (
     <View style={styles.container}>
@@ -27,7 +35,10 @@ export default function ExplorePage() {
         {/* Tattoo History */}
         <TouchableOpacity
           style={styles.option}
-          onPress={() => router.push('/tattoohistoryandculture')}
+                  onPress={async () => {
+            await playClick();
+            router.push('/tattoohistoryandculture');
+          }}
         >
           <Image
             source={require('@/assets/images/Tattoo History.png')}
@@ -39,7 +50,10 @@ export default function ExplorePage() {
         {/* Modern Tattoos */}
         <TouchableOpacity
           style={styles.option}
-          onPress={() => router.push('/moderntattoos')}
+          onPress={async () => {
+            await playClick();
+            router.push('/moderntattoos');
+          }}
         >
           <Image
             source={require('@/assets/images/Modern Tattoo.png')}
@@ -51,7 +65,10 @@ export default function ExplorePage() {
         {/* Artist & Clients */}
         <TouchableOpacity
           style={styles.option}
-          onPress={() => router.push('/artistandclienttips')}
+          onPress={async () => {
+            await playClick();
+            router.push('/artistandclienttips');
+          }}
         >
           <Image
             source={require('@/assets/images/Artist & Clients.png')}
